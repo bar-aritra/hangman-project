@@ -1,0 +1,241 @@
+:root {
+  --bg-color: #262626;
+  --text-color: #D9D9D9;
+  --card-bg: #323232;
+  --border-color: #D7D7D7;
+  --highlight-color: #F9F4DA;
+  --faded-text: #8E8E8E;
+  --correct: #10A95B;
+  --wrong: #EC5D49;
+  --accent: #FCBA29;
+  --farewell: #7A5EA7;
+  --newgame-bg: #11B5E5;
+}
+
+body.light {
+  --bg-color: #f9f9f9;
+  --text-color: #1f1f1f;
+  --card-bg: #e5e5e5;
+  --border-color: #444;
+  --highlight-color: #101010;
+  --faded-text: #6e6e6e;
+  --correct: #21a866;
+  --wrong: #ff6f61;
+  --accent: #f2aa4c;
+  --farewell: #b19cd9;
+  --newgame-bg: #22c2e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main{
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theme-toggle-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+button.toggle-theme {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button.toggle-theme:hover {
+  background-color: var(--card-bg);
+  transform: scale(1.05);
+}
+
+header{
+ text-align: center;
+}
+
+header > h1{
+  font-size: 1.25rem;
+  color: var(--highlight-color);
+}
+
+header > p{
+  font-size: 0.875rem;
+  color: var(--faded-text);
+}
+
+@keyframes slideFadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-title{
+  opacity: 0;
+  animation: slideFadeIn 0.8s ease-out forwards;
+}
+
+section.game-status{
+  display: flex ;
+  flex-direction: column;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  color: #F9F4DA;
+  margin-block: 30px;
+  min-height: 60px;
+  width: 100%;
+}
+
+section.game-status.won{
+background-color: var(--correct);
+}
+
+section.game-status.lost{
+background-color: var(--wrong);
+}
+
+section.game-status.farewell{
+  background-color: var(--farewell);
+  color: var(--text-color);
+  border: 1px dashed var(--border-color);
+}
+
+section.game-status > h2{
+  font-size: 1.25rem;
+  margin: 5px;
+}
+
+section.game-status > p{
+  margin: 5px;
+}
+
+section.game-status > p.farewellMessage{
+    font-style: italic;
+    font-weight: 600;
+}
+
+section.language-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+span.chip{
+  border-radius: 3px;
+  padding: 5px;
+  position: relative;
+}
+
+span.chip.lost::before {
+  content: "💀";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+section.word{
+  display: flex;
+  justify-content: center;
+  gap: 3.5px;
+  margin-bottom: 30px;
+}
+
+section.word > span{
+  height: 40px;
+  width: 40px;
+  background-color: var(--card-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem;
+  border-bottom: 2px solid var(--highlight-color);
+}
+
+section.word > span.missed-letter{
+  color: var(--wrong);
+}
+
+section.keyboard{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 36px;
+  max-width: 350px;
+  width: 100%;
+}
+
+section.keyboard > button{
+  background-color: var(--accent);
+  height: 35px;
+  width: 35px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid var(--border-color);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+section.keyboard > button.correct{
+  background-color:  var(--correct);
+}
+
+section.keyboard > button.wrong{
+  background-color: var(--wrong);
+}
+
+section.keyboard > button:disabled{
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button.new-game{
+  background-color: var(--newgame-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 3px;
+  width: 225px;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  cursor: pointer;
+}
